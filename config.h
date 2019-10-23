@@ -97,7 +97,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,		XK_w,		killclient,	{0} },
+	{ MODKEY,		                XK_w,		killclient,	{0} },
 	{ MODKEY,                       XK_j,		focusstack,	{.i = +1 } },
 	{ MODKEY,                       XK_k,		focusstack,	{.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,		movestack,	{.i = +1 } },
