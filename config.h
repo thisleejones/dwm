@@ -1,12 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
+static const char selbgcolor[]      = "#005577";
+static const char selfgcolor[]      = "#eeeeee";
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int gappx     = 9;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=11" };
+static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -54,9 +57,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,             0,           -1 },
 };
 
 /* layout(s) */
@@ -68,10 +71,10 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+	{ "|M|",	centeredmaster },
 	{ "[]=",	tile },    /* first entry is default */
 	{ "[M]",	monocle },
  	{ "[@]",	spiral },
-	{ "|M|",	centeredmaster },
 	{ "><>",	NULL },    /* no layout function means floating behavior */
 	{ ">M>",	centeredfloatingmaster },
 };
@@ -94,7 +97,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,			XK_q,		killclient,	{0} },
+	{ MODKEY|ShiftMask,		XK_w,		killclient,	{0} },
 	{ MODKEY,                       XK_j,		focusstack,	{.i = +1 } },
 	{ MODKEY,                       XK_k,		focusstack,	{.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,		movestack,	{.i = +1 } },
@@ -105,10 +108,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_i,		incnmaster,	{.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,		incnmaster,	{.i = -1 } },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
-	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} },
-	{ MODKEY,			XK_f,		setlayout,	{.v = &layouts[1]} },
-	{ MODKEY,			XK_y,		setlayout,	{.v = &layouts[2]} },
-	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[3]} },
+	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[0]} },
+	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[1]} },
+	{ MODKEY,			XK_f,		setlayout,	{.v = &layouts[2]} },
+	{ MODKEY,			XK_y,		setlayout,	{.v = &layouts[3]} },
 	{ MODKEY,			XK_i,		setlayout,	{.v = &layouts[4]} },
 	{ MODKEY,			XK_o,		setlayout,	{.v = &layouts[5]} },
 	{ MODKEY,			XK_Tab,		view,		{0} },
