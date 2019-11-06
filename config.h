@@ -138,6 +138,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
 	{ MODKEY,			XK_Page_Up,	shiftview,	{ .i = -1 } },
 	{ MODKEY,			XK_Page_Down,	shiftview,	{ .i = 1 } },
+	{ MODKEY,           XK_s,      swapfocus,      {.i = -1 } },
 };
 
 /* button definitions */
